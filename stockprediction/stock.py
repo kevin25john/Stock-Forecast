@@ -45,6 +45,41 @@ def get_data(name):
             prices.append(float(row[1]))
             print(prices)
         return
+
+
+def get_high(name):
+    with open(name, 'r') as csvfile:
+        csvFileReader = csv.reader(csvfile)
+        next(csvFileReader)
+        for row in reversed(list(csvFileReader)):
+            dates.append(int(row[0].split('-')[0]))
+            print(dates)
+            prices.append(float(row[4]))
+            print(prices)
+        return
+
+def get_open(name):
+    with open(name, 'r') as csvfile:
+        csvFileReader = csv.reader(csvfile)
+        next(csvFileReader)
+        for row in reversed(list(csvFileReader)):
+            dates.append(int(row[0].split('-')[0]))
+            print(dates)
+            prices.append(float(row[6]))
+            print(prices)
+        return
+
+def get_low(name):
+    with open(name, 'r') as csvfile:
+        csvFileReader = csv.reader(csvfile)
+        next(csvFileReader)
+        for row in reversed(list(csvFileReader)):
+            dates.append(int(row[0].split('-')[0]))
+            print(dates)
+            prices.append(float(row[5]))
+            print(prices)
+        return
+
   
   #
   #gaurav anex, a-17, saraswat bank, near lajja show room. ground floor.  
@@ -72,8 +107,22 @@ def predict_prices(dates, prices, x):
 # ,svr_lin.predict(x)[0], svr_poly.predict(x)[0]
 
 data_name = name + '.csv'
+ques= input("close/high/low/open  ?")
+if ques == "close":
 
-get_data(data_name)
+    get_data(data_name)
+
+elif ques =="high":
+    get_high(data_name)
+    
+elif ques == "open":
+    get_open(data_name)
+    
+elif ques == "low":
+    get_low(data_name)
+    
+
+
 
 predicted_price =   predict_prices(dates, prices, 0)
 print (predicted_price)
