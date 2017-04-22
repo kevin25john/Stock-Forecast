@@ -5,18 +5,21 @@ from sklearn.svm import SVR
 import matplotlib.pyplot as plt
 import warnings
 
-from datetime import datetime
+import datetime
 #warnings.filterwarnings("ignore", category=DeprecationWarning) 
 
 import yahoo_finance
 from yahoo_finance import Share
 import pandas as pd
+#import test3
 
-#from pandas_datareader import data
 
+#name = text_contents
 name= input("enter the stock keyword  ")
-date_start = input("enter start date in the order YY-MM-DD  ")
-date_end = input("enter end date in the order YY-MM-DD  ")
+#date_start = input("enter start date in the order YY-MM-DD  ")
+date_start= "2015-01-01"
+#date_end = datetime.datetime.now().strftime ("%Y-%m-%d")
+date_end = input("enter end date: ")
 symbol = Share(name)
 google_data = symbol.get_historical(date_start, date_end)
 google_df = pd.DataFrame(google_data)
@@ -43,7 +46,7 @@ def get_data(name):
             dates.append(int(row[0].split('-')[0]))
             print(dates)
             prices.append(float(row[1]))
-            print(prices)
+            #print(prices)
         return
 
 
@@ -55,7 +58,7 @@ def get_high(name):
             dates.append(int(row[0].split('-')[0]))
             print(dates)
             prices.append(float(row[4]))
-            print(prices)
+            #print(prices)
         return
 
 def get_open(name):
@@ -66,7 +69,7 @@ def get_open(name):
             dates.append(int(row[0].split('-')[0]))
             print(dates)
             prices.append(float(row[6]))
-            print(prices)
+            #print(prices)
         return
 
 def get_low(name):
@@ -77,7 +80,7 @@ def get_low(name):
             dates.append(int(row[0].split('-')[0]))
             print(dates)
             prices.append(float(row[5]))
-            print(prices)
+           # print(prices)
         return
 
   
@@ -121,9 +124,13 @@ elif ques == "open":
 elif ques == "low":
     get_low(data_name)
     
-
+# 5 companies, 1jan16 to 31dec
+#why difference betweenn closing n opening
+#how to find accuracy?
+# prepare table 1feb16 to 28feb16 
 
 
 predicted_price =   predict_prices(dates, prices, 0)
-print (predicted_price)
-print ("hello")
+print ("\n \n\n \n \n \n \n Precidected price is :", predicted_price, "\n \n \n \n \n")
+#print ("hello")
+
