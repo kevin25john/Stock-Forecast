@@ -15,11 +15,11 @@ import pandas as pd
 
 
 #name = text_contents
-name= input("enter the stock keyword  ")
+name= input("Please enter the stock keyword:   ")
 #date_start = input("enter start date in the order YY-MM-DD  ")
 date_start= "2015-01-01"
-#date_end = datetime.datetime.now().strftime ("%Y-%m-%d")
-date_end = input("enter end date: ")
+date_end = datetime.datetime.now().strftime ("%Y-%m-%d")
+#date_end = input("enter end date: ")
 symbol = Share(name)
 google_data = symbol.get_historical(date_start, date_end)
 google_df = pd.DataFrame(google_data)
@@ -30,13 +30,13 @@ def make_filename(name, directory ="stockprediction"):
     return output_path + "/" + directory + "/" + name +  ".csv"
 google_df.to_csv(make_filename(name,) )
 
-print("data received")
+print("data received \n")
 dates = []
 prices = []
 
 model = SVR(cache_size=7000)
 #name = 'SBIN.NS.csv'
-print("hello")
+#print("hello \n")
 
 def get_data(name):
     with open(name, 'r') as csvfile:
@@ -110,7 +110,7 @@ def predict_prices(dates, prices, x):
 # ,svr_lin.predict(x)[0], svr_poly.predict(x)[0]
 
 data_name = name + '.csv'
-ques= input("close/high/low/open  ?")
+ques= input("would you like to predict the high/low/open/close ??    ")
 if ques == "close":
 
     get_data(data_name)
@@ -131,6 +131,6 @@ elif ques == "low":
 
 
 predicted_price =   predict_prices(dates, prices, 0)
-print ("\n \n\n \n \n \n \n Precidected price is :", predicted_price, "\n \n \n \n \n")
+print ("\n \n\n \n \n \n \n Precidected price is :", predicted_price, "\n \n")
 #print ("hello")
 
